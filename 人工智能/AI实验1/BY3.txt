@@ -1,0 +1,9 @@
+P->m,r|m,i|r,r|r,i|r,m
+###
+S->BB
+B->aB|b
+###
+E->E+T|T
+T->T*F|F
+F->(E)|i
+###

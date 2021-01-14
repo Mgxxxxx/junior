@@ -1,0 +1,1 @@
+cmd_/home/mgxxx/Desktop/linux3/实验3/P143/intr.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T ./scripts/module-common.lds -o /home/mgxxx/Desktop/linux3/实验3/P143/intr.ko /home/mgxxx/Desktop/linux3/实验3/P143/intr.o /home/mgxxx/Desktop/linux3/实验3/P143/intr.mod.o;  true

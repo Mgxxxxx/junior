@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let success = { m: 3, c: 3, p: 1 };
+        let contain = 2;
+        let arr = [];
+        let res = [];
+        arr.push({ m: 0, c: 0, p: 0 });
+        function cross(x) {
+            for (let i = 0; i < x; i++)
+                if (arr[i].m == arr[x].m && arr[i].c == arr[x].c && arr[i].p == arr[x].p) return;
+            if (arr[x].m == success.m && arr[x].c == success.c && arr[x].p == success.p) {
+                // for (let i = 0; i < x + 1; i++) {
+                //     console.log(`(${arr[i].m},${arr[i].c},${arr[i].p})->`);
+                // }
+                // console.log('success');
+                // console.log(arr.slice(0, x + 1))
+                res.push([...arr.slice(0, x + 1)])
+                return;
+            }
+            if ((arr[x].m != 0 && arr[x].m < arr[x].c) || (((success.m - arr[x].m) != 0) && (success.m - arr[x].m < success.c - arr[x].c))) {
+                // for (let i = 0; i < x + 1; i++) {
+                //     console.log(`(${arr[i].m},${arr[i].c},${arr[i].p})->`);
+                // }
+                // console.log('fail');
+                return;
+            }
+            let _i = arr[x].p == 0 ? success.m - arr[x].m : arr[x].m;
+            let _j = arr[x].p == 0 ? success.c - arr[x].c : arr[x].c;
+            for (let i = 0; i <= _i; i++) {
+                if (i <= contain) {
+                    for (let j = 0; j <= _j; j++) {
+                        if (i + j > contain) break;
+                        if (i + j < 1) continue;
+                        else {
+                            let temp = {};
+                            if (arr[x].p == 0) {
+                                temp.m = arr[x].m + i;
+                                temp.c = arr[x].c + j;
+                                temp.p = 1;
+                            } else {
+                                temp.m = arr[x].m - i;
+                                temp.c = arr[x].c - j;
+                                temp.p = 0;
+                            }
+                            arr[x + 1] = temp;
+                            cross(x + 1);
+                        }
+                    }
+                }
+            }
+        }
+        cross(0)
+        console.log(res)
+    </script>
+</body>
+
+</html>
